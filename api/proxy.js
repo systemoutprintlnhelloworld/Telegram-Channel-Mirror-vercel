@@ -21,12 +21,11 @@ module.exports = (req, res) => {
       //   "^/backend/": "/",
     },
     on: {
-    proxyRes: responseInterceptor(async (responseBuffer, proxyRes, req, res) => {
-      res.statusCode = 200; // set different response status code
-
-      const response = responseBuffer.toString('utf8');
-      return response;
-    }),
-  },
+      proxyRes: responseInterceptor(async (responseBuffer, proxyRes, req, res) => {
+        res.statusCode = 200; // set different response status code
+        const response = responseBuffer.toString('utf8');
+        return response;
+      }),
+    }
   })(req, res);
 };
