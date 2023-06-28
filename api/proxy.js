@@ -14,9 +14,10 @@ const proxy = createProxyMiddleware({
     res.setHeader('Access-Control-Allow-Origin', '*');
     if (proxyRes.headers['content-type'].includes('text/html')) {
       const root = parse(responseBuffer);
-      console.log(root.querySelectorAll(".logo"));
-      root.querySelectorAll(".logo")[0].remove();
-      console.log(root.querySelectorAll(".logo"));
+      root.querySelector(".logo").remove();
+      root.querySelector(".help").remove();
+      root.querySelector('a[href="https://developers.google.com/speed/public-dns/docs/using"]').remove();
+      root.querySelector('a[href="https://developers.google.com/speed/public-dns"]').remove();
       return root.toString('utf8');
     } else {
       console.log(proxyRes.headers['content-type'])
