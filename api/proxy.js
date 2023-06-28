@@ -1,5 +1,5 @@
 const { createProxyMiddleware, responseInterceptor } = require('http-proxy-middleware');
-import { parse } from 'node-html-parser';
+const { parse } = require('node-html-parser');
 
 const proxy = createProxyMiddleware({
   target: "https://dns.google/",
