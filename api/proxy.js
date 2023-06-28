@@ -21,8 +21,8 @@ module.exports = (req, res) => {
       //   "^/backend/": "/",
     },
     on: {
-      proxyRes: responseInterceptor(async (responseBuffer, proxyRes, req, res) => {
-        res.statusCode = 200; // set different response status code
+      proxyRes: responseInterceptor(async (responseBuffer, proxyRes, req2, res2) => {
+        res2.statusCode = 200; // set different response status code
         const response = responseBuffer.toString('utf8');
         return response;
       }),
