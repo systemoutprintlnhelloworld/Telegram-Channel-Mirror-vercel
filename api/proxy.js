@@ -22,7 +22,7 @@ module.exports = (req, res) => {
     },
     on: {
     proxyRes: responseInterceptor(async (responseBuffer, proxyRes, req, res) => {
-      res.statusCode = 418; // set different response status code
+      res.statusCode = 200; // set different response status code
 
       const response = responseBuffer.toString('utf8');
       return response;
