@@ -14,6 +14,7 @@ const proxy = createProxyMiddleware({
     res.setHeader('Access-Control-Allow-Origin', '*');
     if (proxyRes.headers['content-type'].includes('text/html')) {
       const root = parse(responseBuffer);
+      console.log(root.querySelectorAll(".logo"));
       root.querySelectorAll(".logo")[0].remove();
       console.log(root.querySelectorAll(".logo"));
       return root.toString('utf8');
