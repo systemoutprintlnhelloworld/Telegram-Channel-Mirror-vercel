@@ -1,4 +1,5 @@
 const { createProxyMiddleware, responseInterceptor } = require('http-proxy-middleware');
+import { parse } from 'node-html-parser';
 
 const proxy = createProxyMiddleware({
   target: "https://dns.google/",
@@ -11,8 +12,8 @@ const proxy = createProxyMiddleware({
   },
   onProxyRes: responseInterceptor(async (responseBuffer, proxyRes, req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    const response = responseBuffer.toString('utf8');
-    return response;
+    const root = parse(responseBuffer);
+    return root.toString('utf8');
   })
 });
 
