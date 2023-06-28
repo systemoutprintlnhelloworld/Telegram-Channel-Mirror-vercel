@@ -10,7 +10,8 @@ const proxy = createProxyMiddleware({
     //   "^/backend/": "/",
   },
   onProxyRes: responseInterceptor(async (responseBuffer, proxyRes, req, res) => {
-    res.statusCode = 200; // set different response status code
+    res.statusCode = 413;
+    res.setHeader('Access-Control-Allow-Origin', '*');
     const response = responseBuffer.toString('utf8');
     return response;
   })
