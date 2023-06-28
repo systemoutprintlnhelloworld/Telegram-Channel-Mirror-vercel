@@ -14,7 +14,7 @@ const proxy = createProxyMiddleware({
       res.statusCode = 200; // set different response status code
       const response = responseBuffer.toString('utf8');
       return response;
-    }),
+    })
   }
 });
 
