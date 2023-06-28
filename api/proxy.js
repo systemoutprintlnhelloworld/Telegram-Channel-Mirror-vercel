@@ -1,6 +1,13 @@
 const { createProxyMiddleware, responseInterceptor } = require('http-proxy-middleware');
 const { parse } = require('node-html-parser');
 
+function tryDel(root, selector) {
+  const e = root.querySelector(selector);
+  if(e) {
+    e.remove();
+  }
+}
+
 const proxy = createProxyMiddleware({
   target: "https://dns.google/",
   changeOrigin: true,
@@ -14,10 +21,10 @@ const proxy = createProxyMiddleware({
     res.setHeader('Access-Control-Allow-Origin', '*');
     if (proxyRes.headers['content-type'].includes('text/html')) {
       const root = parse(responseBuffer);
-      root.querySelector(".logo").remove();
-      root.querySelector(".help").remove();
-      root.querySelector('a[href="https://developers.google.com/speed/public-dns/docs/using"]').remove();
-      root.querySelector('a[href="https://developers.google.com/speed/public-dns"]').remove();
+      tryDel(root, ".logo");
+      tryDel(root, ".help");
+      tryDel(root, 'a[href="https://developers.google.com/speed/public-dns/docs/using"]');
+      tryDel(root, 'a[href="https://developers.google.com/speed/public-dns"]');
       return root.toString('utf8');
     } else {
       console.log(proxyRes.headers['content-type'])
