@@ -15,7 +15,10 @@ const proxy = createProxyMiddleware({
     if (proxyRes.headers['content-type'] === 'text/html') {
       const root = parse(responseBuffer);
       root.querySelectorAll(".logo")[0].remove();
+      console.log(root.querySelectorAll(".logo"));
       return root.toString('utf8');
+    } else {
+      console.log(proxyRes.headers['content-type'])
     }
     return responseBuffer;
   })
