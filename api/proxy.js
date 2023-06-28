@@ -14,10 +14,19 @@ module.exports = (req, res) => {
   createProxyMiddleware({
     target,
     changeOrigin: true,
+    selfHandleResponse: true,
     pathRewrite: {
       // rewrite request path `/backend`
       //  /backend/user/login => http://google.com/user/login
       //   "^/backend/": "/",
     },
+    on: {
+    proxyRes: responseInterceptor(async (responseBuffer, proxyRes, req, res) => {
+      res.statusCode = 418; // set different response status code
+
+      const response = responseBuffer.toString('utf8');
+      return response;
+    }),
+  },
   })(req, res);
 };
