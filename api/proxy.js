@@ -9,13 +9,11 @@ const proxy = createProxyMiddleware({
     //  /backend/user/login => http://google.com/user/login
     //   "^/backend/": "/",
   },
-  on: {
-    proxyRes: responseInterceptor(async (responseBuffer, proxyRes, req, res) => {
-      res.statusCode = 200; // set different response status code
-      const response = responseBuffer.toString('utf8');
-      return response;
-    })
-  }
+  onProxyRes: responseInterceptor(async (responseBuffer, proxyRes, req, res) => {
+    res.statusCode = 200; // set different response status code
+    const response = responseBuffer.toString('utf8');
+    return response;
+  })
 });
 
 module.exports = (req, res) => {
