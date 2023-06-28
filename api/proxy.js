@@ -12,7 +12,7 @@ const proxy = createProxyMiddleware({
   },
   onProxyRes: responseInterceptor(async (responseBuffer, proxyRes, req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    if (proxyRes.headers.has('content-type') && proxyRes.headers['content-type'].indexOf('text/html') != -1) {
+    if (proxyRes.headers.has('content-type') && proxyRes.headers['content-type'].includes('text/html')) {
       const root = parse(responseBuffer);
       root.querySelectorAll(".logo")[0].remove();
       console.log(root.querySelectorAll(".logo"));
