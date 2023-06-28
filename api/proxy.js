@@ -12,12 +12,12 @@ module.exports = (req, res) => {
   createProxyMiddleware({
     target: "https://dns.google/",
     changeOrigin: true,
-    selfHandleResponse: true,
+    //selfHandleResponse: true,
     pathRewrite: {
       // rewrite request path `/backend`
       //  /backend/user/login => http://google.com/user/login
       //   "^/backend/": "/",
-    },
+    }/*,
     on: {
       proxyRes: responseInterceptor(async (responseBuffer, proxyRes, req2, res2) => {
         //res2.statusCode = 200; // set different response status code
@@ -25,5 +25,6 @@ module.exports = (req, res) => {
         return response;
       }),
     }
+      */
   })(req, res);
 };
