@@ -25,7 +25,7 @@ const proxy = createProxyMiddleware({
       tryDel(root, ".help");
       tryDel(root, 'a[href="https://developers.google.com/speed/public-dns/docs/using"]');
       tryDel(root, 'a[href="https://developers.google.com/speed/public-dns"]');
-      return root.toString('utf8').replaceAll("https://dns.google/resolve?", "https://" + proxyRes.req.host + "/resolve?");
+      return root.toString('utf8').replaceAll("https://dns.google/resolve?", "https://" + req.host + "/resolve?");
     } else {
       console.log(proxyRes.headers['content-type'])
     }
