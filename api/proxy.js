@@ -19,7 +19,7 @@ const proxy = createProxyMiddleware({
   },
   onProxyRes: responseInterceptor(async (responseBuffer, proxyRes, req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    if (proxyRes.headers['content-type'].includes('text/html')) {
+    if (proxyRes.headers['content-type'] && proxyRes.headers['content-type'].includes('text/html')) {
       const root = parse(responseBuffer);
       const title = root.getElementsByTagName("title")[0];
       title.innerHTML = title.innerHTML.replaceAll('Google Public DNS', 'Uchan Public DNS');
