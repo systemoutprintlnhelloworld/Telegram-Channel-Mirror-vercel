@@ -9,7 +9,7 @@ function tryDel(root, selector) {
 }
 
 const proxy = createProxyMiddleware({
-  target: "https://dns.google/",
+  target: "https://web.telegram.org/k/#@embypub",
   changeOrigin: true,
   selfHandleResponse: true,
   pathRewrite: {
